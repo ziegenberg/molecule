@@ -28,6 +28,7 @@ import shutil
 from typing import Any, Callable
 
 import click
+from ansiblelint.prerun import prepare_environment
 from click_help_colors import HelpColorsCommand, HelpColorsGroup
 
 import molecule.scenarios
@@ -90,6 +91,8 @@ def execute_cmdline_scenarios(scenario_name, args, command_args, ansible_args=()
     :returns: None
 
     """
+    prepare_environment()
+
     glob_str = MOLECULE_GLOB
     if scenario_name:
         glob_str = glob_str.replace("*", scenario_name)
