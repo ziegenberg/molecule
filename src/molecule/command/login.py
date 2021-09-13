@@ -21,11 +21,11 @@
 
 import logging
 import os
-from subprocess import run
 
 import click
 
 from molecule import scenarios, util
+from molecule.app import app
 from molecule.command import base
 
 LOG = logging.getLogger(__name__)
@@ -144,7 +144,7 @@ class Login(base.Base):
         login_cmd = self._config.driver.login_cmd_template.format(**login_options)
 
         cmd = "/usr/bin/env {}".format(login_cmd)
-        run(cmd, shell=True)
+        app.runtime.exec(cmd, shell=True)
 
 
 @base.click_command_ex()

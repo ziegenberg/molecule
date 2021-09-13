@@ -36,8 +36,8 @@ import jinja2
 import yaml
 from ansible_compat.ports import cache
 from rich.syntax import Syntax
-from subprocess_tee import run
 
+from molecule.app import app
 from molecule.console import console
 from molecule.constants import MOLECULE_HEADER
 
@@ -151,14 +151,15 @@ def run_command(
     if debug:
         print_environment_vars(env)
 
-    result = run(
+    result = app.runtime.exec(
         args,
         env=env,
-        stdout=stdout,
-        stderr=stderr,
+        # stdout=stdout,
+        # stderr=stderr,
         echo=echo or debug,
         quiet=quiet,
         cwd=cwd,
+        tee=True
     )
     if result.returncode != 0 and check:
         raise CalledProcessError(

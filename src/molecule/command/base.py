@@ -51,6 +51,7 @@ class Base(object, metaclass=abc.ABCMeta):
         """
         self._config = c
         self._setup()
+        # breakpoint()
 
     def __init_subclass__(cls) -> None:
         """Decorate execute from all subclasses."""
