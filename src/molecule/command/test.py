@@ -68,6 +68,10 @@ class Test(base.Base):
 
         Always destroy instances at the conclusion of a Molecule run.
 
+    .. option:: molecule test --destroy=never
+
+        Never destroy instances at the conclusion of a Molecule run.
+
     .. program:: molecule --debug test
 
     .. option:: molecule --debug test
@@ -109,9 +113,7 @@ class Test(base.Base):
     "--scenario-name",
     "-s",
     default=base.MOLECULE_DEFAULT_SCENARIO_NAME,
-    help="Name of the scenario to target. ({})".format(
-        base.MOLECULE_DEFAULT_SCENARIO_NAME
-    ),
+    help=f"Name of the scenario to target. ({base.MOLECULE_DEFAULT_SCENARIO_NAME})",
 )
 @click.option(
     "--driver-name",

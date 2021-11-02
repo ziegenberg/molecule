@@ -73,7 +73,7 @@ class Scenario(base.Base):
         role_name = os.getcwd().split(os.sep)[-1]
         role_directory = util.abs_path(os.path.join(os.getcwd(), os.pardir))
 
-        msg = "Initializing new scenario {}...".format(scenario_name)
+        msg = f"Initializing new scenario {scenario_name}..."
         LOG.info(msg)
         molecule_directory = config.molecule_directory(
             os.path.join(role_directory, role_name)
@@ -82,8 +82,9 @@ class Scenario(base.Base):
 
         if os.path.isdir(scenario_directory):
             msg = (
-                "The directory molecule/{} exists. " "Cannot create new scenario."
-            ).format(scenario_name)
+                f"The directory molecule/{scenario_name} exists. "
+                "Cannot create new scenario."
+            )
             util.sysexit_with_message(msg)
 
         driver_template = api.drivers()[
@@ -91,15 +92,14 @@ class Scenario(base.Base):
         ].template_dir()
         if "driver_template" in self._command_args:
             self._validate_template_dir(self._command_args["driver_template"])
-            cli_driver_template = "{driver_template}/{driver_name}".format(
-                **self._command_args
-            )
+            cli_driver_template = f"{self._command_args['driver_template']}/{self._command_args['driver_name']}"
             if os.path.isdir(cli_driver_template):
                 driver_template = cli_driver_template
             else:
                 LOG.warning(
-                    "Driver not found in custom template directory({}), "
-                    "using the default template instead".format(cli_driver_template)
+                    "Driver not found in custom template directory(%s), "
+                    "using the default template instead",
+                    cli_driver_template,
                 )
         scenario_base_directory = os.path.join(role_directory, role_name)
         templates = [
@@ -113,7 +113,7 @@ class Scenario(base.Base):
             )
 
         role_directory = os.path.join(role_directory, role_name)
-        msg = "Initialized scenario in {} successfully.".format(scenario_directory)
+        msg = f"Initialized scenario in {scenario_directory} successfully."
         LOG.info(msg)
 
 
@@ -125,9 +125,7 @@ def _role_exists(ctx, param, value: str):  # pragma: no cover
 
     role_directory = os.path.join(os.pardir, value)
     if not os.path.exists(role_directory):
-        msg = (
-            "The role '{}' not found. " "Please choose the proper role name."
-        ).format(value)
+        msg = f"The role '{value}' not found. " "Please choose the proper role name."
         util.sysexit_with_message(msg)
     return value
 
@@ -140,10 +138,7 @@ def _default_scenario_exists(ctx, param, value: str):  # pragma: no cover
         "molecule", command_base.MOLECULE_DEFAULT_SCENARIO_NAME
     )
     if not os.path.exists(default_scenario_directory):
-        msg = (
-            "The default scenario not found.  Please create a scenario "
-            "named '{}' first."
-        ).format(command_base.MOLECULE_DEFAULT_SCENARIO_NAME)
+        msg = f"The default scenario not found.  Please create a scenario named '{command_base.MOLECULE_DEFAULT_SCENARIO_NAME}' first."
         util.sysexit_with_message(msg)
     return value
 
