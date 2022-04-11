@@ -25,7 +25,7 @@ cookiecutter==1.7.3
 coverage==6.3.2
 cryptography==36.0.2
 distro==1.7.0
-docutils==0.17.1
+docutils==0.18.1
 enrich==1.2.7
 execnet==1.9.0
 filelock==3.6.0
