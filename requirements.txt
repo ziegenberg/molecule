@@ -7,7 +7,7 @@
 alabaster==0.7.12
 ansi2html==1.7.0
 ansible-compat==2.0.2
-ansible-core==2.12.4
+ansible-core==2.12.5
 ansible-pygments==0.1.1
 arrow==1.2.2
 attrs==21.4.0
@@ -23,7 +23,7 @@ click-help-colors==0.9.1
 commonmark==0.9.1
 cookiecutter==1.7.3
 coverage==6.3.2
-cryptography==36.0.2
+cryptography==37.0.1
 distro==1.7.0
 docutils==0.17.1
 enrich==1.2.7
@@ -56,7 +56,7 @@ pytest-plus==0.2
 pytest-testinfra==6.7.0
 pytest-xdist==2.5.0
 python-dateutil==2.8.2
-python-slugify==6.1.1
+python-slugify==6.1.2
 pytz==2022.1
 pyyaml==6.0
 requests==2.27.1
